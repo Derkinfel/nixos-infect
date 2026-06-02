@@ -67,7 +67,7 @@ EOF
     trimmed_line=$(echo -n "$line" | xargs)
     echo -n "''$trimmed_line'' "
   done <<<"$keys")];
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
   $kernel_params
 }
 EOF
@@ -414,7 +414,7 @@ infect() {
   # shellcheck disable=SC1090
   source ~/.nix-profile/etc/profile.d/nix.sh
 
-  [[ -z "$NIX_CHANNEL" ]] && NIX_CHANNEL="nixos-25.11"
+  [[ -z "$NIX_CHANNEL" ]] && NIX_CHANNEL="nixos-26.05"
   nix-channel --remove nixpkgs
   nix-channel --add "https://nixos.org/channels/$NIX_CHANNEL" nixos
   nix-channel --update
@@ -493,3 +493,5 @@ fi
 if [[ -z "$NO_REBOOT" ]]; then
   reboot
 fi
+
+# curl https://raw.githubusercontent.com/Derkinfel/nixos-infect/refs/heads/master/nixos-infect | NIX_CHANNEL=nixos-26.05 bash -x
